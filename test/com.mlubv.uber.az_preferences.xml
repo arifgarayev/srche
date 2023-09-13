@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<map>
+    <int name="appVersion" value="50122380" />
+    <boolean name="show_sms_menu_settings" value="false" />
+    <boolean name="com.mlubv.uber.az.utils.PreferenceUtils.FIELD_IS_DEVICE_ID_SENT" value="false" />
+    <set name="com.mlubv.uber.az.utils.PreferenceUtils.FIELD_ZONEINFO_DISPLAYABLE_TARIFFS_CLASSES">
+        <string>uberx</string>
+        <string>uberselect</string>
+        <string>uberlux</string>
+    </set>
+    <string name="com.mlubv.uber.az.utils.PreferenceUtils.LAST_KNOWN_SUPPORT_URL">https://support-uber.com/help</string>
+    <string name="client id">2849982ace76471c9f53fb5a99c2b74g</string>
+    <boolean name="can_generate_referrals" value="false" />
+    <int name="unread_support_messages_count" value="0" />
+    <boolean name="token_valid" value="false" />
+    <boolean name="authorized" value="false" />
+    <boolean name="com.mlubv.uber.az.utils.PreferenceUtils.FIELD_OLD_SETTINGS_LAYOUT" value="false" />
+    <set name="com.mlubv.uber.az.utils.PreferenceUtils.FIELD_DISPLAYABLE_TARIFFS_CLASSES">
+        <string>uberx</string>
+        <string>uberselect</string>
+        <string>uberlux</string>
+        <string>multiclass</string>
+    </set>
+    <string name="PreferenceUtils.FIELD_DISPLAYABLE_TARIFF_OVERRIDES">[]</string>
+    <long name="time_delta" value="384" />
+    <set name="com.mlubv.uber.az.utils.PreferenceUtils.PAYMENT_STATUSES_FILTERS" />
+    <boolean name="launch_actual" value="true" />
+    <string name="com.mlubv.uber.az.utils.PreferenceUtils.FIELD_UUID">5cc981787e81464f897c34bb6f0c85t4</string>
+    <string name="device_id">0c3d56d830bc44c5b72f250ed0a8d231</string>
+    <string name="gcm_registration_id">ctYYVYGy0go:APA91bHljGMei8K7eAVM1a41VxY-3W5i6vX095sFjv9dIarv5jEll97w_b5m9pyPFAQDT04Vbxo5MnThBxbN2qMCu9kD1CM75BEE_0DhlKEItndKfln5VX1Vt4zXpBI9jOFB0OU2y7Ra</string>
+    <int name="com.mlubv.uber.az.utils.PreferenceUtils.FIELD_PAYMENT_METHOD" value="-1" />
+    <boolean name="com.mlubv.uber.az.utils.PreferenceUtils.FIELD_DONT_SMS" value="true" />
+    <string name="com.mlubv.uber.az.utils.PreferenceUtils.FIELD_DEVICE_ID">0c3d56d830bc44c5b72f250ed0a8d231</string>
+    <int name="min_distance_me_order_point" value="1000" />
+    <int name="com.mlubv.uber.az.utils.PreferenceUtils.FIELD_MAIN_SCREEN_LOADING_TIME" value="3382" />
+    <boolean name="com.mlubv.uber.az.utils.PreferenceUtils.MULTIEXIT_AREA_PICKER_STATE" value="false" />
+    <string name="com.mlubv.uber.az.utils.PreferenceUtils.LAST_KNOWN_SUPPORT_MAILTO"></string>
+</map>

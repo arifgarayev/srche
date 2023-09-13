@@ -1,0 +1,31 @@
+/usr/bin/python3 /Users/arifgarayev/PycharmProjects/driverdatascraper/src/services/sms-activate.py
+[Debug] {"status":"success","values":{"0":{"id":"7730279","phone":"79289766823"}}}
+[Debug] {"status":"success","service":"full","msg":"","passedSeconds":4,"countEmpty":false,"costTotal":110.97,"costOfNew":5.55,"quantity":"2","values":{"0":{"phoneFrom":"YandexGo","text":"Your confirmation code: 582651.\nMOoS+UjeNYR","service":"full","date":"2022-12-01 12:02:11","type":"sms","accepted":"1","cost":0,"passedSeconds":0},"1":{"phoneFrom":"Uber","text":"Your confirmation code is 483237. Please enter it in the text field.","service":"full","date":"2022-12-01 11:53:28","type":"sms","accepted":"1","cost":0,"passedSeconds":0}}}
+{'costOfNew': 5.55,
+ 'costTotal': 110.97,
+ 'countEmpty': False,
+ 'msg': '',
+ 'passedSeconds': 4,
+ 'quantity': '2',
+ 'service': 'full',
+ 'status': 'success',
+ 'values': {'0': {'accepted': '1',
+                  'cost': 0,
+                  'date': '2022-12-01 12:02:11',
+                  'passedSeconds': 0,
+                  'phoneFrom': 'YandexGo',
+                  'service': 'full',
+                  'text': 'Your confirmation code: 582651.\nMOoS+UjeNYR',
+                  'type': 'sms'},
+            '1': {'accepted': '1',
+                  'cost': 0,
+                  'date': '2022-12-01 11:53:28',
+                  'passedSeconds': 0,
+                  'phoneFrom': 'Uber',
+                  'service': 'full',
+                  'text': 'Your confirmation code is 483237. Please enter it '
+                          'in the text field.',
+                  'type': 'sms'}}}
+------------------------
+
+Process finished with exit code 0

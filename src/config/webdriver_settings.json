@@ -1,0 +1,11 @@
+{
+  "chrome_options": {
+    "1": "enable-automation",
+    "2": "--disable-infobars",
+    "3": "--disable-dev-shm-usage",
+    "4": "--disable-browser-side-navigation",
+    "5": "--disable-gpu",
+    "6": "--window-size=1080,720"
+  }
+
+}

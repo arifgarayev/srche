@@ -1,0 +1,18 @@
+
+{
+  "desired_caps" : {
+                "platformName": "Android",
+                "platformVersion": "13",
+                "deviceName": "emulator-5554",
+                "autoAcceptAlerts": "true",
+                "locationServicesAuthorized": "true",
+                "udid": "emulator-5554",
+                "maxInstances": "1"
+
+  },
+  "host" : {
+    "host_url" : "http://127.0.0.1:4723/wd/hub"
+  }
+
+}
+
