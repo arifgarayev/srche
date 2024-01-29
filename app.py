@@ -8,11 +8,12 @@ from src.utils.common import Utils
 from src.scenario.common_flow_uberAZ import CommonFlowUberAZ
 
 
-
 def main():
     xyz = CommonFlowUberAZ()
 
-    routes_hash_map = Utils.get_json_to_dict(os.getcwd() + '/src/config/top_routes.json')
+    routes_hash_map = Utils.get_json_to_dict(
+        os.getcwd() + "/src/config/top_routes.json"
+    )
 
     # xyz.reinstall_with_new_id()
 
@@ -90,10 +91,5 @@ def main():
         xyz.cancel_active_order()
 
 
-
 if __name__ == "__main__":
-
     main()
-
-
-

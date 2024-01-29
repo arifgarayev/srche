@@ -2,8 +2,8 @@ from src.utils.common import Utils
 from smsactivate.api import SMSActivateAPI
 import pprint
 
-class SMSActivator:
 
+class SMSActivator:
     def __init__(self):
         self.API_KEY = ""
         self.COUNTRY_CODE = 0
@@ -12,9 +12,7 @@ class SMSActivator:
         self.sa = SMSActivateAPI(self.API_KEY)
         self.sa.debug_mode = True
 
-
     def buy_number(self):
-
         """
 
         :return: dict of endDate, id, number
@@ -22,8 +20,9 @@ class SMSActivator:
 
         # number id 7730279
 
-        operators = self.sa.getRentNumber(time=4, country=self.COUNTRY_CODE, service='full')
-
+        operators = self.sa.getRentNumber(
+            time=4, country=self.COUNTRY_CODE, service="full"
+        )
 
         print(operators)
         # self.operators = self.sa.getRentStatus(self.sa.getRentList()['values']['0']['id']) # check all incoming messages
@@ -35,11 +34,9 @@ class SMSActivator:
         ' number':'79289766823°}
         """
 
-        return operators['phone']
-
+        return operators["phone"]
 
     def get_confirmation_code(self, id_of_number, is_uber=None, is_yango=None):
-
         """
         :param id_of_number: required to pass number id to verify incoming message
         :param is_uber: default None - parses message for Uber
@@ -50,10 +47,15 @@ class SMSActivator:
         returned_value = self.sa.getRentStatus(id_of_number)
 
         def iter(key):
-            if returned_value['status'] != 'error':
-                for i in returned_value['values']:
-                    if key in returned_value['values'][i]['phoneFrom']:
-                        confirmation_code = returned_value['values'][i]['text'].replace('.', ' ').replace('\n', ' ').split()
+            if returned_value["status"] != "error":
+                for i in returned_value["values"]:
+                    if key in returned_value["values"][i]["phoneFrom"]:
+                        confirmation_code = (
+                            returned_value["values"][i]["text"]
+                            .replace(".", " ")
+                            .replace("\n", " ")
+                            .split()
+                        )
 
                         for code in confirmation_code:
                             if code.isdigit():
@@ -62,15 +64,10 @@ class SMSActivator:
                 return None
 
         if is_uber:
-            return iter('Uber')
+            return iter("Uber")
 
         if is_yango:
-            return iter('Yandex')
-
-
-
-
-
+            return iter("Yandex")
 
     def activate_number(self, is_uber=None, is_yango=None):
         """
@@ -81,17 +78,18 @@ class SMSActivator:
         :return:
         """
         if is_uber:
-            return self.sa.getNumber(service='ub', operator='any', country=self.COUNTRY_CODE)
-
+            return self.sa.getNumber(
+                service="ub", operator="any", country=self.COUNTRY_CODE
+            )
 
         if is_yango:
-            return self.sa.getNumber(service='ya', operator='any', country=self.COUNTRY_CODE)
+            return self.sa.getNumber(
+                service="ya", operator="any", country=self.COUNTRY_CODE
+            )
 
         """
         {'activation_id': 1192283283, 'phone': 79260403285}
         """
-
-
 
     def get_all_number_statuses(self):
         return self.sa.getActiveActivations()
@@ -103,7 +101,6 @@ class SMSActivator:
     
     {'status': 'success', 'activeActivations': [{'activationId': '1192283283', 'serviceCode': 'ub', 'phoneNumber': '79260403285', 'activationCost': '10.00', 'activationStatus': '2', 'smsCode': ['529503'], 'smsText': ['529503'], 'activationTime': '2022-12-21 14:09:30', 'discount': '0', 'repeated': '0', 'countryCode': '0', 'countryName': 'Russia', 'canGetAnotherSms': '1'}]}
     """
-
 
     def get_number_status_by_id(self, portal_id):
         """
@@ -125,10 +122,7 @@ class SMSActivator:
             return response.split(":")[-1]
 
         else:
-
             return None
-
-
 
 
 if __name__ == "__main__":
@@ -136,8 +130,8 @@ if __name__ == "__main__":
 
     # x.request_activations()
 
-    #print(x.activate_number(is_yango=True))
+    # print(x.activate_number(is_yango=True))
 
     print(x.get_number_status_by_id(1192290788))
 
-    #print(x.get_all_number_statuses())
+    # print(x.get_all_number_statuses())

@@ -28,7 +28,6 @@ x = """
 """
 xx = str()
 for num in x.split():
-    xx += num + ',' + ' '
+    xx += num + "," + " "
 
 print(xx)
-

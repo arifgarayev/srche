@@ -1,12 +1,6 @@
-
-
 class ActionsInterface:
-
-
-
     def resend_sms_confirmation_code(self):
         pass
-
 
     def click_where_to_banner(self):
         pass
@@ -25,7 +19,6 @@ class ActionsInterface:
 
     def send_bottom_route(self, adress):
         pass
-
 
     def click_to_payment_method(self):
         pass
@@ -62,6 +55,7 @@ class ActionsInterface:
 
     def click_enter_phone_number(self):
         pass
+
     #
     # def enter_phone_number(self):
     #     pass
@@ -78,17 +72,14 @@ class ActionsInterface:
     def send_phone_number(self, phone_number):
         pass
 
-
     def click_to_send_confirmation_code(self):
         pass
 
     def send_confirmation_code(self, confirmation_code):
         pass
 
-
     def set_user_name(self, names_tuple):
         pass
-
 
     def click_cash(self):
         pass
@@ -104,7 +95,6 @@ class ActionsInterface:
 
     def click_to_details_in_active_order(self):
         pass
-
 
     def get_all_driver_data(self):
         pass
@@ -124,30 +114,25 @@ class ActionsInterface:
     def click_ok_at_cancelled_ride(self):
         pass
 
-
     def cancel_ride(self):
         pass
 
-     # //android.widget.Button[@content-desc="Cancel ride"]/android.widget.FrameLayout/android.widget.ImageView
+    # //android.widget.Button[@content-desc="Cancel ride"]/android.widget.FrameLayout/android.widget.ImageView
 
     def hanlde_are_you_sure_to_cancel(self):
         pass
 
     # /hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout[6]/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.Button[2]
 
-
-
     def select_reason(self):
         pass
+
     # //android.widget.CheckBox[@content-desc="Driver asked me to cancel the ride"]
 
-
     def complete_reason_click_done(self):
-
         pass
 
     # com.mlubv.uber.az:id/done
-
 
     def check_for_device_block(self):
         pass
@@ -159,17 +144,15 @@ class ActionsInterface:
         pass
 
     def is_new_state_adress(self):
-
         pass
 
     def click_to_use_another_number(self):
         pass
 
-
     def click_to_ok_in_number_block(self):
         pass
 
-    def check_if_user(self): # FIXME
+    def check_if_user(self):  # FIXME
         pass
 
     def add_account(self):

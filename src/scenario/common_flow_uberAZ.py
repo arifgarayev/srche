@@ -8,27 +8,25 @@ from src.services.sms_activate import SMSActivator
 from src.entity.common_queries import Query
 from src.common.generator import CommonObjectGenerator
 
+
 class CommonFlowUberAZ(CommonObjectGenerator):
-
     # emu = Emulator(Utils.get_json_to_dict(os.path.dirname(os.getcwd()) + '/config/emulator_config.json'))
-
 
     #
     # db = Query(Utils.get_json_to_dict(os.path.dirname(os.getcwd()) + '/config/database_config.json')['DB_conn_str'])
     #
     # sms = SMSActivator()
 
-    _issued_number_id = None #FIXME to None
+    _issued_number_id = None  # FIXME to None
 
     _send_new_state_tries = 2
-    def __init__(self):
 
+    def __init__(self):
         super().__init__()
 
         self.uber = Uber_az(self.emu)
 
     def issue_a_number(self):
-
         """
         issue a number
         add to db
@@ -38,25 +36,24 @@ class CommonFlowUberAZ(CommonObjectGenerator):
         operator_dict = self.sms.activate_number(is_uber=True)
 
         try:
-            #added to db
-            self.db.insert_new_issued_number(operator_dict['activation_id'], operator_dict['phone'], is_uber=True)
+            # added to db
+            self.db.insert_new_issued_number(
+                operator_dict["activation_id"], operator_dict["phone"], is_uber=True
+            )
 
             # set a prop
-            self._issued_number_id = operator_dict['activation_id']
+            self._issued_number_id = operator_dict["activation_id"]
 
             print("Issued number id prop - ", self._issued_number_id)
             print("Dict ", operator_dict)
 
             print(operator_dict)
 
-            return operator_dict['activation_id']
+            return operator_dict["activation_id"]
         except Exception:
             return None
 
-
     def register_a_user_with_registered_acc(self):
-
-
         time.sleep(3.5)
 
         self.uber.click_settings_menu()
@@ -103,14 +100,12 @@ class CommonFlowUberAZ(CommonObjectGenerator):
         # wait for confirmation code
         time.sleep(3.5)
 
-
     def register_a_user_without_registered_acc(self):
         time.sleep(3.5)
 
         self.uber.click_settings_menu()
 
         time.sleep(3.5)
-
 
         self.uber.click_enter_phone_number()
 
@@ -122,9 +117,7 @@ class CommonFlowUberAZ(CommonObjectGenerator):
 
         phone_number = self.db.get_mobile_no(self._issued_number_id, is_uber=True)
 
-
         self.uber.send_phone_number("+" + str(phone_number[0][0]))
-
 
         time.sleep(3.5)
 
@@ -135,7 +128,6 @@ class CommonFlowUberAZ(CommonObjectGenerator):
         time.sleep(3.5)
 
     def register_a_user_with_device_blocked_user_in(self):
-
         # self.uber.delete_phone_number()
 
         # self.uber.add_account()
@@ -160,9 +152,7 @@ class CommonFlowUberAZ(CommonObjectGenerator):
         # wait for confirmation code
         time.sleep(15)
 
-
     def check_and_set_confirmation_code(self):
-
         time.sleep(10)
 
         confirmation_code = self.sms.get_number_status_by_id(self._issued_number_id)
@@ -172,7 +162,6 @@ class CommonFlowUberAZ(CommonObjectGenerator):
 
         counter = 0
         while not confirmation_code and counter < 2:
-
             self.uber.resend_sms_confirmation_code()
             time.sleep(35)
             confirmation_code = self.sms.get_number_status_by_id(self._issued_number_id)
@@ -198,15 +187,17 @@ class CommonFlowUberAZ(CommonObjectGenerator):
             while not confirmation_code and counter < 2:
                 self.uber.resend_sms_confirmation_code()
                 time.sleep(35)
-                confirmation_code = self.sms.get_number_status_by_id(self._issued_number_id)
+                confirmation_code = self.sms.get_number_status_by_id(
+                    self._issued_number_id
+                )
                 print("Uber AZ confirmation code: ", confirmation_code)
                 counter += 1
 
-
-
         self.uber.send_confirmation_code(confirmation_code)
 
-        self.db.insert_confirmation_code(self._issued_number_id, confirmation_code, is_uber=True)
+        self.db.insert_confirmation_code(
+            self._issued_number_id, confirmation_code, is_uber=True
+        )
 
         self.uber.click_to_payment_method()
 
@@ -220,16 +211,10 @@ class CommonFlowUberAZ(CommonObjectGenerator):
 
         time.sleep(3)
 
-
-
     def send_new_state_route(self, origin, destination):
-
         # if
         try:
-
             self.uber.click_where_to_banner(self._send_new_state_tries)
-
-
 
         except (self.uber.NoSuchElementException, self.uber.TimeoutException):
             self._send_new_state_tries = 0
@@ -307,19 +292,14 @@ class CommonFlowUberAZ(CommonObjectGenerator):
 
             self.uber.click_to_suggested_dest(is_bottom=True)
 
-
         time.sleep(10)
 
-
-
     def confirm_ride(self):
-
         time.sleep(5)
 
         self.uber.confirm_ride()
 
         time.sleep(13)
-
 
         if self.uber.check_for_device_block():
             # self.uber.click_to_use_another_number()
@@ -343,16 +323,11 @@ class CommonFlowUberAZ(CommonObjectGenerator):
 
         return True
 
-
-
-
-
         # time.sleep(7)
         #
         # self.uber.shrink_active_search_order()
 
     def register_a_user_with_number_blocked_user_in(self):
-
         self.uber.click_to_ok_in_number_block()
 
         time.sleep(3.5)
@@ -360,8 +335,6 @@ class CommonFlowUberAZ(CommonObjectGenerator):
         self.register_a_user_with_registered_acc()
 
         time.sleep(3)
-
-
 
         # self.uber.delete_phone_number()
         #
@@ -381,9 +354,7 @@ class CommonFlowUberAZ(CommonObjectGenerator):
         # # wait for confirmation code
         # time.sleep(3.5)
 
-
     def handle_active_order(self):
-
         def activity_checker():
             is_active_order = self.uber.is_any_active_order()
             limit = 10
@@ -405,7 +376,7 @@ class CommonFlowUberAZ(CommonObjectGenerator):
 
             time.sleep(5)
 
-                # your ride will be cheaper message handler
+            # your ride will be cheaper message handler
             try:
                 self.uber.shrink_active_order_view()
             except:
@@ -421,14 +392,21 @@ class CommonFlowUberAZ(CommonObjectGenerator):
 
             time.sleep(5)
 
-            driver_name, car_description,\
-                phone_number = self.uber.get_all_driver_data()
+            driver_name, car_description, phone_number = self.uber.get_all_driver_data()
 
             driver_name = driver_name
-            car_description = car_description.replace('\u200a', ' ')
-            phone_number = phone_number.replace('+', '').replace("(", '').replace(")", '').replace('-', '').replace('\xa0', '')
+            car_description = car_description.replace("\u200a", " ")
+            phone_number = (
+                phone_number.replace("+", "")
+                .replace("(", "")
+                .replace(")", "")
+                .replace("-", "")
+                .replace("\xa0", "")
+            )
             # insert scraped data to db
-            self.db.insert_driver_data(driver_name, phone_number, car_description, is_uber=True)
+            self.db.insert_driver_data(
+                driver_name, phone_number, car_description, is_uber=True
+            )
 
             return driver_name, car_description, phone_number
 
@@ -436,7 +414,6 @@ class CommonFlowUberAZ(CommonObjectGenerator):
             return None
 
     def cancel_active_order(self):
-
         self.uber.cancel_ride()
 
         time.sleep(3)
@@ -460,9 +437,7 @@ class CommonFlowUberAZ(CommonObjectGenerator):
 
         time.sleep(5)
 
-
     def reinstall_with_new_id(self):
-
         self.uber.kill_uber_app()
         time.sleep(2)
         self.uber.kill_clone_app()
@@ -471,7 +446,6 @@ class CommonFlowUberAZ(CommonObjectGenerator):
 
         if self.uber.package_name:
             self.uber.uninstall_app(self.uber.package_name)
-
 
         time.sleep(3)
 
@@ -487,7 +461,6 @@ class CommonFlowUberAZ(CommonObjectGenerator):
             self.uber.click_uber_app()
 
         except:
-
             self.uber.scroll_down_page()
             time.sleep(3)
             self.uber.click_uber_app()
@@ -496,9 +469,7 @@ class CommonFlowUberAZ(CommonObjectGenerator):
 
         self.uber.click_to_choose_os()
 
-
         time.sleep(3)
-
 
         self.uber.click_device_privacy()
 
@@ -547,15 +518,10 @@ class CommonFlowUberAZ(CommonObjectGenerator):
         time.sleep(2)
 
 
-
-
-
 if __name__ == "__main__":
-
     xyz = CommonFlowUberAZ()
 
     xyz.uber.kill_uber_app()
-
 
     xyz.uber.start_uber_app()
 
@@ -563,30 +529,22 @@ if __name__ == "__main__":
 
     xyz.uber.click_gps_location_circle()
 
-
     while True:
-        for x, y in Utils.get_json_to_dict(os.path.dirname(os.getcwd()) + '/config/top_routes.json').items():
-
+        for x, y in Utils.get_json_to_dict(
+            os.path.dirname(os.getcwd()) + "/config/top_routes.json"
+        ).items():
             xyz.send_new_state_route(x, y)
 
-
             if not xyz.confirm_ride():
-
                 # uninstall app
                 # clone app with new ID
 
                 time.sleep(3)
                 xyz.send_new_state_route(x, y)
 
-
             print(xyz.handle_active_order())
 
-
             xyz.cancel_active_order()
-
-
-
-
 
     # time.sleep(5)
     #
@@ -601,13 +559,10 @@ if __name__ == "__main__":
     # xyz.check_and_set_confirmation_code()
 
 
-
-
-
 # id=  com.mlubv.uber.az:id/arrows_view
 # //android.widget.Button[@content-desc="Call"]
 
-#DETAIL //android.widget.Button[@resource-id="com.mlubv.uber.az:id/details"]//android.widget.Button[@resource-id="com.mlubv.uber.az:id/lead_frame"]
+# DETAIL //android.widget.Button[@resource-id="com.mlubv.uber.az:id/details"]//android.widget.Button[@resource-id="com.mlubv.uber.az:id/lead_frame"]
 
 # Ride details locators .text + take screenshot
 

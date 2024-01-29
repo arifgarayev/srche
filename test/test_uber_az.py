@@ -6,7 +6,7 @@ from src.utils.common import Utils
 
 # print(os.getcwd())
 
-emu = Emulator(Utils.get_json_to_dict(os.getcwd() + '/src/config/emulator_config.json'))
+emu = Emulator(Utils.get_json_to_dict(os.getcwd() + "/src/config/emulator_config.json"))
 
 uber = Uber_az(emu)
 
